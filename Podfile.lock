@@ -107,6 +107,7 @@ PODS:
     - gRPC-Core/Interface (= 1.14.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.14.0)
+  - JJFloatingActionButton (2.5.0)
   - leveldb-library (1.22)
   - LFLiveKit (2.6)
   - nanopb (0.3.9011):
@@ -124,6 +125,7 @@ DEPENDENCIES:
   - Geofirestore
   - GoogleMaps
   - GooglePlaces
+  - JJFloatingActionButton
   - LFLiveKit
   - Socket.IO-Client-Swift
 
@@ -145,6 +147,7 @@ SPEC REPOS:
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - JJFloatingActionButton
     - leveldb-library
     - LFLiveKit
     - nanopb
@@ -169,6 +172,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   "gRPC-C++": 19eec1ffd34de29453f5fab5b4697ad0f240ad51
   gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
+  JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   LFLiveKit: 2219563721f8aa0f188effc3395a06e2d53b23f2
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -176,6 +180,6 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 635a0cae3f49fcc5cb38c54baff922817cca8374
+PODFILE CHECKSUM: 8237acfd997529bce822ec44e15f30b9ce4de175
 
 COCOAPODS: 1.9.1

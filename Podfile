@@ -14,4 +14,5 @@ target 'Siri' do
   pod 'Geofirestore'
   pod 'LFLiveKit'
   pod 'Socket.IO-Client-Swift'
+  pod 'JJFloatingActionButton'
 end 
