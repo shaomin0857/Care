@@ -13,7 +13,6 @@ class MonitorController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Monitor did load")
-        // test8787
         // Do any additional setup after loading the view.
     }
     
