@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Wt3-pC-EqB">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera-->
+        <scene sceneID="iGB-c7-aJh">
+            <objects>
+                <viewController id="7aY-Sl-oim" customClass="RtmpController" customModule="Siri" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgO-Cp-W6U"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ap-AL-fa5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="68t-Kw-gqN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Camera" image="camera" catalog="system" id="Uic-70-tSN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMM-yx-eol" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2293" y="-673"/>
+        </scene>
+        <!--Speech-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SpeechTest" customModule="Siri" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SpeechView" customModule="Siri" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What can I help you with?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtM-HG-XED">
+                                <rect key="frame" x="85" y="91" width="245" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="4W9-pJ-fdN"/>
+                                    <constraint firstAttribute="width" constant="245" id="Yra-Qg-0po"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-O8-cvx">
+                                <rect key="frame" x="153" y="753" width="108" height="30"/>
+                                <state key="normal" title="Start Recording"/>
+                                <connections>
+                                    <action selector="microphoneTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Miv-0u-Wyb"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="This is the UITextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RL2-YE-xML">
+                                <rect key="frame" x="20" y="343" width="374" height="291"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="291" id="NeV-Ix-1sE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wF6-O8-cvx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BaS-Rv-Wyg"/>
+                            <constraint firstItem="CtM-HG-XED" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="DUC-Aa-T81"/>
+                            <constraint firstItem="RL2-YE-xML" firstAttribute="top" secondItem="CtM-HG-XED" secondAttribute="bottom" constant="36" id="SXB-Yy-Fma"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RL2-YE-xML" secondAttribute="trailing" id="V4E-Jf-a4s"/>
+                            <constraint firstItem="CtM-HG-XED" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YUD-XV-vgR"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="RL2-YE-xML" secondAttribute="leading" id="aeW-p6-z7J"/>
+                            <constraint firstItem="RL2-YE-xML" firstAttribute="centerX" secondItem="CtM-HG-XED" secondAttribute="centerX" id="cL7-Q1-eyo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wF6-O8-cvx" secondAttribute="bottom" constant="30" id="rMQ-yb-tCj"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Speech" image="speaker" catalog="system" selectedImage="speaker" id="V54-aK-WRB"/>
+                    <navigationItem key="navigationItem" id="vUi-Qd-FUY"/>
+                    <connections>
+                        <outlet property="microphoneButton" destination="wF6-O8-cvx" id="V9V-fM-n1g"/>
+                        <outlet property="textView" destination="RL2-YE-xML" id="WCI-r4-v5k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2292.753623188406" y="138.61607142857142"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="hPG-AF-tKk">
+            <objects>
+                <viewController id="thr-hy-dn2" customClass="AppleMaps" customModule="Siri" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EHd-hP-kKB"/>
+                        <viewControllerLayoutGuide type="bottom" id="JSB-yo-IyN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gut-gf-W4u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="mappin.and.ellipse" catalog="system" selectedImage="mappin.and.ellipse" id="HMH-TR-arJ"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Xp5-9C-I8P">
+                        <barButtonItem key="rightBarButtonItem" title="search" image="magnifyingglass" catalog="system" id="avQ-GG-u6D">
+                            <connections>
+                                <action selector="searchButton:" destination="thr-hy-dn2" id="Fpq-P2-8D4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7j-Hg-1Bx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2913" y="952"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="ul7-Gd-Zsl">
+            <objects>
+                <viewController id="ZGk-fu-P4i" customClass="MonitorController" customModule="_857" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lHi-8A-Tdp"/>
+                        <viewControllerLayoutGuide type="bottom" id="L4f-Sx-dnu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vvI-py-Y7j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Location" image="location" catalog="system" selectedImage="location" id="5Pj-7D-dX9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mxh-YN-jbl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544" y="752"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="p3S-hs-sM7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2QO-cd-K5R" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="mappin.and.ellipse" catalog="system" id="YdL-o9-Xfm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h91-4k-2nW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="thr-hy-dn2" kind="relationship" relationship="rootViewController" id="w4o-P5-rI0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z42-y5-YyT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="952"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="GtV-UD-pos">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Wt3-pC-EqB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JZt-Oz-vCD">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="UoF-1L-0Hw"/>
+                        <segue destination="2QO-cd-K5R" kind="relationship" relationship="viewControllers" id="ZAC-Ts-SxV"/>
+                        <segue destination="7aY-Sl-oim" kind="relationship" relationship="viewControllers" id="7Cq-gh-Xpn"/>
+                        <segue destination="ZGk-fu-P4i" kind="relationship" relationship="viewControllers" id="sSz-HA-Pbk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tff-Yj-GDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1391" y="139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="location" catalog="system" width="128" height="115"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="speaker" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
