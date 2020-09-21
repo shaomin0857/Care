@@ -16,43 +16,17 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
     
     var myMapView:MKMapView!
     var targetAnno:MKPointAnnotation!
+    // MARK: - IOT Connection Settings
+    let host = "iot.cht.com.tw"
+    let device = "23558832518"
+    let sensor = "location"
+    let apikey = "PKEE42472GRRRZ2ZAY"
     
-    let host:String!="iot.cht.com.tw"
-    let device:String!="23558832518"
-    let sensor:String!="location"
-    let apikey:String!="PKEE42472GRRRZ2ZAY"
-    
-    // MARK: - WebSocket
-    var socket: WebSocket = WebSocket(url: URL(string: "ws://iot.cht.com.tw:80/iot/ws/rawdata")!)
-    
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("websocketDidConnect")
-        let config:NSDictionary = [
-            "ck": "PKEE42472GRRRZ2ZAY",
-            "resources": ["/v1/device/23558832518/sensor/location/rawdata"]
-        ]
-        let jsonData = try? JSONSerialization.data(withJSONObject: config, options: [])
-        let jsonString = String(data: jsonData!, encoding: .utf8)
-        socket.write(string: jsonString!)
-        
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocketDidDisconnect", error ?? "")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("websocketDidReceiveMessage", text)
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("websocketDidReceiveData", data)
-    }
-    
+    var socket: WebSocket!
     
     override func viewDidLoad() {
-        // MARK: - MapInitialize
         super.viewDidLoad()
+        // MARK: - Map init
         let fullSize = UIScreen.main.bounds.size
 
         // 建立一個 MKMapView
@@ -96,7 +70,7 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
         myMapView.addAnnotation(targetAnno)
         updateAnnoLocation(lati: 25.063059, long: 121.533838)
         
-        // Init Floating Button
+        // MARK: - Floating Button init
         let actionButton = JJFloatingActionButton()
 
         actionButton.addItem(title: "RandomMove", image: UIImage(systemName: "arrow.clockwise")?.withRenderingMode(.alwaysTemplate)) { item in
@@ -104,12 +78,7 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
         }
 
         actionButton.addItem(title: "Tracking", image: UIImage(systemName: "arrow.swap")?.withRenderingMode(.alwaysTemplate)) { item in
-            let arr = [
-                [
-                    "id":self.sensor as Any,
-                    "value":["Success"],
-                ]
-            ]
+            
             self.socket.connect()
         }
 
@@ -117,41 +86,37 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
           // do something
         }
         actionButton.display(inViewController: self)
-        
-        
+        //MARK: - Websocket init
+        socket = WebSocket(url: URL(string: "ws://\(host):80/iot/ws/rawdata")!)
         socket.delegate = self
     }
-    
-    
     func updateAnnoLocation(lati:Double,long:Double)->Void{
         targetAnno.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
         targetAnno.title = "\(targetAnno.coordinate.latitude)\n\(targetAnno.coordinate.longitude)"
     }
-    func json(from object:Any) -> String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
-            return nil
-        }
-        return String(data: data, encoding: String.Encoding.utf8)
+    // MARK: - Define WebSocket Delegate
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocketDidConnect")
+        let config:NSDictionary = [
+            "ck": apikey,
+            "resources": ["/v1/device/\(device)/sensor/\(sensor)/rawdata"]
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: config, options: [])
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        socket.write(string: jsonString!)
     }
     
-    func newAnno() -> Void {
-        var objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = CLLocation(
-          latitude: 25.036798,
-          longitude: 121.499962).coordinate
-        objectAnnotation.title = "艋舺公園"
-        objectAnnotation.subtitle =
-          "艋舺公園位於龍山寺旁邊，原名為「萬華十二號公園」。"
-        myMapView.addAnnotation(objectAnnotation)
-
-        // 建立另一個地點圖示 (經由委任方法設置圖示)
-        objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = CLLocation(
-          latitude: 25.063059,
-          longitude: 121.533838).coordinate
-        objectAnnotation.title = "行天宮"
-        objectAnnotation.subtitle =
-          "行天宮是北臺灣參訪香客最多的廟宇。"
-        myMapView.addAnnotation(objectAnnotation)
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("websocketDidDisconnect", error ?? "")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("websocketDidReceiveMessage", text)
+        targetAnno.subtitle = text
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("websocketDidReceiveData", data)
     }
 }
