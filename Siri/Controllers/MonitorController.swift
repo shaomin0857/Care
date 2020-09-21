@@ -9,10 +9,47 @@
 import UIKit
 import MapKit
 import JJFloatingActionButton
+import Starscream
 
-class MonitorController: UIViewController, MKMapViewDelegate {
+class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
+    
+    
     var myMapView:MKMapView!
     var targetAnno:MKPointAnnotation!
+    
+    let host:String!="iot.cht.com.tw"
+    let device:String!="23558832518"
+    let sensor:String!="location"
+    let apikey:String!="PKEE42472GRRRZ2ZAY"
+    
+    // MARK: - WebSocket
+    var socket: WebSocket = WebSocket(url: URL(string: "ws://iot.cht.com.tw:80/iot/ws/rawdata")!)
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocketDidConnect")
+        let config:NSDictionary = [
+            "ck": "PKEE42472GRRRZ2ZAY",
+            "resources": ["/v1/device/23558832518/sensor/location/rawdata"]
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: config, options: [])
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        socket.write(string: jsonString!)
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("websocketDidDisconnect", error ?? "")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("websocketDidReceiveMessage", text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("websocketDidReceiveData", data)
+    }
+    
+    
     override func viewDidLoad() {
         // MARK: - MapInitialize
         super.viewDidLoad()
@@ -67,19 +104,34 @@ class MonitorController: UIViewController, MKMapViewDelegate {
         }
 
         actionButton.addItem(title: "Tracking", image: UIImage(systemName: "arrow.swap")?.withRenderingMode(.alwaysTemplate)) { item in
-          // do something
+            let arr = [
+                [
+                    "id":self.sensor as Any,
+                    "value":["Success"],
+                ]
+            ]
+            self.socket.connect()
         }
 
         actionButton.addItem(title: "Move By Step", image: UIImage(systemName: "arrow.right.to.line.alt")?.withRenderingMode(.alwaysTemplate)){ item in
           // do something
         }
-        
         actionButton.display(inViewController: self)
+        
+        
+        socket.delegate = self
     }
+    
     
     func updateAnnoLocation(lati:Double,long:Double)->Void{
         targetAnno.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
         targetAnno.title = "\(targetAnno.coordinate.latitude)\n\(targetAnno.coordinate.longitude)"
+    }
+    func json(from object:Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return String(data: data, encoding: String.Encoding.utf8)
     }
     
     func newAnno() -> Void {
@@ -102,6 +154,4 @@ class MonitorController: UIViewController, MKMapViewDelegate {
           "行天宮是北臺灣參訪香客最多的廟宇。"
         myMapView.addAnnotation(objectAnnotation)
     }
-
-
 }

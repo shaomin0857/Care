@@ -15,4 +15,6 @@ target 'Siri' do
   pod 'LFLiveKit'
   pod 'Socket.IO-Client-Swift'
   pod 'JJFloatingActionButton'
+  pod 'CocoaMQTT'
+  pod 'SwiftWebSocket'
 end 
