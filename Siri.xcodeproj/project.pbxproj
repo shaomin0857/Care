@@ -14,6 +14,9 @@
 		805027F21D389E5700CE3F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 805027F11D389E5700CE3F1F /* Assets.xcassets */; };
 		805027F51D389E5700CE3F1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805027F31D389E5700CE3F1F /* LaunchScreen.storyboard */; };
 		B852709A2517E9B400A37FC7 /* MonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85270992517E9B400A37FC7 /* MonitorController.swift */; };
+		B8702F2A251B099300FC1DF2 /* mqtt_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F29251B099300FC1DF2 /* mqtt_io.swift */; };
+		B8702F2C251B09A800FC1DF2 /* restful_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F2B251B09A800FC1DF2 /* restful_io.swift */; };
+		B8702F2E251B09B800FC1DF2 /* websocket_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F2D251B09B800FC1DF2 /* websocket_io.swift */; };
 		B9134E78242B181100F6AF19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9134E77242B181100F6AF19 /* GoogleService-Info.plist */; };
 		B9134E7A242C9D7000F6AF19 /* AppleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9134E79242C9D7000F6AF19 /* AppleMaps.swift */; };
 		FE5F4F23249CC698002D89F2 /* RtmpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5F4F22249CC698002D89F2 /* RtmpController.swift */; };
@@ -36,6 +39,9 @@
 		805027F41D389E5700CE3F1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		805027F61D389E5700CE3F1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B85270992517E9B400A37FC7 /* MonitorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorController.swift; sourceTree = "<group>"; };
+		B8702F29251B099300FC1DF2 /* mqtt_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mqtt_io.swift; sourceTree = "<group>"; };
+		B8702F2B251B09A800FC1DF2 /* restful_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restful_io.swift; sourceTree = "<group>"; };
+		B8702F2D251B09B800FC1DF2 /* websocket_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = websocket_io.swift; sourceTree = "<group>"; };
 		B9134E77242B181100F6AF19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B9134E79242C9D7000F6AF19 /* AppleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMaps.swift; sourceTree = "<group>"; };
 		BA92E3D3AE16339D9C5AE0BB /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 		805027E91D389E5700CE3F1F /* Siri */ = {
 			isa = PBXGroup;
 			children = (
+				B8702F25251B07F800FC1DF2 /* CHT_IOT */,
 				FE5F4F24249CCA29002D89F2 /* images */,
 				FEACB80C248BA5AC006FAFA8 /* App */,
 				FED151D0245AFE1800320772 /* Firestore */,
@@ -113,6 +120,16 @@
 				E20A109E85F41FEE666D9774 /* Pods_Siri.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8702F25251B07F800FC1DF2 /* CHT_IOT */ = {
+			isa = PBXGroup;
+			children = (
+				B8702F29251B099300FC1DF2 /* mqtt_io.swift */,
+				B8702F2B251B09A800FC1DF2 /* restful_io.swift */,
+				B8702F2D251B09B800FC1DF2 /* websocket_io.swift */,
+			);
+			name = CHT_IOT;
 			sourceTree = "<group>";
 		};
 		FE5F4F24249CCA29002D89F2 /* images */ = {
@@ -303,6 +320,9 @@
 				805027ED1D389E5700CE3F1F /* SpeechTest.swift in Sources */,
 				B9134E7A242C9D7000F6AF19 /* AppleMaps.swift in Sources */,
 				FE5F4F23249CC698002D89F2 /* RtmpController.swift in Sources */,
+				B8702F2E251B09B800FC1DF2 /* websocket_io.swift in Sources */,
+				B8702F2C251B09A800FC1DF2 /* restful_io.swift in Sources */,
+				B8702F2A251B099300FC1DF2 /* mqtt_io.swift in Sources */,
 				805027EB1D389E5700CE3F1F /* AppDelegate.swift in Sources */,
 				B852709A2517E9B400A37FC7 /* MonitorController.swift in Sources */,
 			);

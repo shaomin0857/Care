@@ -11,9 +11,9 @@ import MapKit
 import JJFloatingActionButton
 
 import Starscream
-import CocoaMQTT
+import SwiftMQTT
 
-class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate, CocoaMQTTDelegate{
+class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
     
     var myMapView:MKMapView!
     var targetAnno:MKPointAnnotation!
@@ -24,7 +24,7 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate,
     let apikey = "PKEE42472GRRRZ2ZAY"
     
     var socket: WebSocket!
-    var mqtt:CocoaMQTT!
+    var mqttSession:MQTTSession!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,21 +77,31 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate,
 
         actionButton.addItem(title: "RandomMove", image: UIImage(systemName: "arrow.clockwise")?.withRenderingMode(.alwaysTemplate)) { item in
             self.updateAnnoLocation(lati: self.targetAnno.coordinate.latitude+0.01, long: self.targetAnno.coordinate.longitude+0.01)
+            
         }
 
         actionButton.addItem(title: "Tracking", image: UIImage(systemName: "arrow.swap")?.withRenderingMode(.alwaysTemplate)) { item in
             
             self.socket.connect()
         }
-
+        
+        var count = 0
         actionButton.addItem(title: "Move By Step", image: UIImage(systemName: "arrow.right.to.line.alt")?.withRenderingMode(.alwaysTemplate)){ item in
-            let payload:NSDictionary = [
+            let payload:[NSDictionary] = [[
                 "id": "\(self.sensor)",
-                "value": ["\(8787)"]
-            ]
-            let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: [])
-            let jsonString = String(data: jsonData!, encoding: .utf8)
-            self.mqtt!.publish("/v1/device/\(self.device)/rawdata", withString: jsonString!, qos: .qos1)
+                "value": ["\(count)"]
+            ]]
+            let data = try! JSONSerialization.data(withJSONObject: payload, options: .prettyPrinted)
+            let topic = "/v1/device/\(self.device)/rawdata"
+
+            self.mqttSession.publish(data, in: topic, delivering: .atLeastOnce, retain: false) { error in
+                if error == .none {
+                    print("Published data in \(topic)!")
+                } else {
+                    print(error.description)
+                }
+            }
+            count+=1
         }
         actionButton.display(inViewController: self)
         
@@ -109,17 +119,25 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate,
     }
     // MARK: - MQTT init
     func mqttSetting() -> Void {
-        let clientID = "CocoaMQTT-\(apikey)-" + String(ProcessInfo().processIdentifier)
-        mqtt = CocoaMQTT(clientID: clientID, host: host, port: 1883)
-        mqtt!.username = apikey
-        mqtt!.password = apikey
-        mqtt?.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
-        mqtt!.keepAlive = 60
-        mqtt!.delegate = self
-        
-        if let mqttStatus = mqtt?.connect(){
-            print(mqttStatus)
+        mqttSession = MQTTSession(
+            host: host,
+            port: 1883,
+            clientID: "swift", // must be unique to the client
+            cleanSession: true,
+            keepAlive: 60,
+            useSSL: false
+        )
+        mqttSession.username = apikey
+        mqttSession.password = apikey
+        mqttSession.connect { error in
+            if error == .none {
+                print("Connected!")
+            } else {
+                print(error.description)
+            }
         }
+        
+        
     }
     // MARK: - Define WebSocket Delegate
     
@@ -146,40 +164,4 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate,
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("websocketDidReceiveData", data)
     }
-    // MARK: - Define MQTT Delegate
-    func mqttDidPing(_ mqtt: CocoaMQTT) {
-        
-    }
-    
-    func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
-        
-    }
-    
-    func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-        print("did publish")
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String]) {
-        
-    }
-    
-    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-        
-    }
-    
 }

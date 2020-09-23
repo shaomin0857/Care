@@ -5,9 +5,6 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - CocoaAsyncSocket (7.6.4)
-  - CocoaMQTT (1.2.5):
-    - CocoaAsyncSocket (~> 7.6.3)
   - Firebase (5.15.0):
     - Firebase/Core (= 5.15.0)
   - Firebase/Core (5.15.0):
@@ -122,10 +119,10 @@ PODS:
   - Socket.IO-Client-Swift (15.2.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.1)
+  - SwiftMQTT (3.0.1)
   - SwiftWebSocket (2.7.0)
 
 DEPENDENCIES:
-  - CocoaMQTT
   - Firebase/Firestore
   - Geofirestore
   - GoogleMaps
@@ -133,13 +130,12 @@ DEPENDENCIES:
   - JJFloatingActionButton
   - LFLiveKit
   - Socket.IO-Client-Swift
+  - SwiftMQTT
   - SwiftWebSocket
 
 SPEC REPOS:
   trunk:
     - BoringSSL
-    - CocoaAsyncSocket
-    - CocoaMQTT
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -162,12 +158,11 @@ SPEC REPOS:
     - Protobuf
     - Socket.IO-Client-Swift
     - Starscream
+    - SwiftMQTT
     - SwiftWebSocket
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
-  CocoaMQTT: a61490ed3b328011c5d75169a77781983e2bb221
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
@@ -190,8 +185,9 @@ SPEC CHECKSUMS:
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SwiftMQTT: 983eeb29e8c8173ed953e0238d2f99b79ff3ccd2
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
 
-PODFILE CHECKSUM: 66867804137fef3f933a6b4df6b56cb820abb40f
+PODFILE CHECKSUM: 403f6449c0d12443ecae1cdea83a09f663f16734
 
 COCOAPODS: 1.9.1
