@@ -11,24 +11,46 @@ import MapKit
 import JJFloatingActionButton
 
 import Starscream
-import SwiftMQTT
 
-class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
-    
+
+class MonitorController: UIViewController, MKMapViewDelegate{
+    // MARK: - Components Define
     var myMapView:MKMapView!
     var targetAnno:MKPointAnnotation!
-    // MARK: - IOT Connection Settings
-    let host = "iot.cht.com.tw"
-    let device = "23558832518"
-    let sensor = "location"
-    let apikey = "PKEE42472GRRRZ2ZAY"
     
-    var socket: WebSocket!
-    var mqttSession:MQTTSession!
+    // MARK: - Connection Tool Define
+    var mqtt:mqtt_io!
+    var socket:WebSocket!
+    var websocketio:websocket_io!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: - Map init
+        addMapComponents()
+        addFloatingButtonComponents()
+        mqttInit()
+        WebScocketInit()
+    }
+    // MARK: - MQTT
+    func mqttInit() -> Void {
+        mqtt = mqtt_io(
+        host: "iot.cht.com.tw",
+        apikey: "PKEE42472GRRRZ2ZAY",
+        device: "23558832518")
+    }
+    // MARK: - WebSocket
+    func WebScocketInit() -> Void {
+        websocketio = websocket_io(
+            host: "iot.cht.com.tw",
+            apikey: "PKEE42472GRRRZ2ZAY",
+            device: "23558832518",
+            sensor: "location")
+        socket = websocketio.websocketInit()
+        socket.onText = { text in
+            print("onText ",text)
+        }
+    }
+    // MARK: - Map init
+    func addMapComponents() -> Void{
         let fullSize = UIScreen.main.bounds.size
 
         // 建立一個 MKMapView
@@ -71,8 +93,14 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
         targetAnno = MKPointAnnotation()
         myMapView.addAnnotation(targetAnno)
         updateAnnoLocation(lati: 25.063059, long: 121.533838)
+    }
+    func updateAnnoLocation(lati:Double,long:Double)->Void{
+        targetAnno.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
+        targetAnno.title = "\(targetAnno.coordinate.latitude)\n\(targetAnno.coordinate.longitude)"
+    }
+    // MARK: - Floating Button
+    func addFloatingButtonComponents() -> Void {
         
-        // MARK: - Floating Button init
         let actionButton = JJFloatingActionButton()
 
         actionButton.addItem(title: "RandomMove", image: UIImage(systemName: "arrow.clockwise")?.withRenderingMode(.alwaysTemplate)) { item in
@@ -82,86 +110,14 @@ class MonitorController: UIViewController, MKMapViewDelegate ,WebSocketDelegate{
 
         actionButton.addItem(title: "Tracking", image: UIImage(systemName: "arrow.swap")?.withRenderingMode(.alwaysTemplate)) { item in
             
-            self.socket.connect()
         }
         
         var count = 0
         actionButton.addItem(title: "Move By Step", image: UIImage(systemName: "arrow.right.to.line.alt")?.withRenderingMode(.alwaysTemplate)){ item in
-            let payload:[NSDictionary] = [[
-                "id": "\(self.sensor)",
-                "value": ["\(count)"]
-            ]]
-            let data = try! JSONSerialization.data(withJSONObject: payload, options: .prettyPrinted)
-            let topic = "/v1/device/\(self.device)/rawdata"
-
-            self.mqttSession.publish(data, in: topic, delivering: .atLeastOnce, retain: false) { error in
-                if error == .none {
-                    print("Published data in \(topic)!")
-                } else {
-                    print(error.description)
-                }
-            }
+            self.mqtt.publish(sensor: "location", value:"\(count)")
             count+=1
         }
+        
         actionButton.display(inViewController: self)
-        
-        websocketSetting()
-        mqttSetting()
-    }
-    func updateAnnoLocation(lati:Double,long:Double)->Void{
-        targetAnno.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
-        targetAnno.title = "\(targetAnno.coordinate.latitude)\n\(targetAnno.coordinate.longitude)"
-    }
-    // MARK: - Websocket init
-    func websocketSetting() -> Void {
-        socket = WebSocket(url: URL(string: "ws://\(host):80/iot/ws/rawdata")!)
-        socket.delegate = self
-    }
-    // MARK: - MQTT init
-    func mqttSetting() -> Void {
-        mqttSession = MQTTSession(
-            host: host,
-            port: 1883,
-            clientID: "swift", // must be unique to the client
-            cleanSession: true,
-            keepAlive: 60,
-            useSSL: false
-        )
-        mqttSession.username = apikey
-        mqttSession.password = apikey
-        mqttSession.connect { error in
-            if error == .none {
-                print("Connected!")
-            } else {
-                print(error.description)
-            }
-        }
-        
-        
-    }
-    // MARK: - Define WebSocket Delegate
-    
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("websocketDidConnect")
-        let config:NSDictionary = [
-            "ck": apikey,
-            "resources": ["/v1/device/\(device)/sensor/\(sensor)/rawdata"]
-        ]
-        let jsonData = try? JSONSerialization.data(withJSONObject: config, options: [])
-        let jsonString = String(data: jsonData!, encoding: .utf8)
-        socket.write(string: jsonString!)
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocketDidDisconnect", error ?? "")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("websocketDidReceiveMessage", text)
-        targetAnno.subtitle = text
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("websocketDidReceiveData", data)
     }
 }
