@@ -17,7 +17,13 @@
 		B8702F2A251B099300FC1DF2 /* mqtt_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F29251B099300FC1DF2 /* mqtt_io.swift */; };
 		B8702F2C251B09A800FC1DF2 /* restful_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F2B251B09A800FC1DF2 /* restful_io.swift */; };
 		B8702F2E251B09B800FC1DF2 /* websocket_io.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F2D251B09B800FC1DF2 /* websocket_io.swift */; };
-		B9134E78242B181100F6AF19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9134E77242B181100F6AF19 /* GoogleService-Info.plist */; };
+		B8702F31251B738C00FC1DF2 /* JsonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8702F30251B738C00FC1DF2 /* JsonProvider.swift */; };
+		B8726FE32536F75000DC0E25 /* FinalImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8726FDE2536F75000DC0E25 /* FinalImageVC.swift */; };
+		B8726FE42536F75000DC0E25 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8726FDF2536F75000DC0E25 /* FaceDetectionViewController.swift */; };
+		B8726FE52536F75000DC0E25 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8726FE02536F75000DC0E25 /* UIViewExtension.swift */; };
+		B8726FE62536F75000DC0E25 /* CoreGraphicsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8726FE12536F75000DC0E25 /* CoreGraphicsExtensions.swift */; };
+		B8726FE72536F75000DC0E25 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8726FE22536F75000DC0E25 /* FaceView.swift */; };
+		B8ED215E2533794800E926AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8ED215D2533794700E926AA /* GoogleService-Info.plist */; };
 		B9134E7A242C9D7000F6AF19 /* AppleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9134E79242C9D7000F6AF19 /* AppleMaps.swift */; };
 		FE5F4F23249CC698002D89F2 /* RtmpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5F4F22249CC698002D89F2 /* RtmpController.swift */; };
 		FE5F4F2D249CCA66002D89F2 /* camra_beauty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE5F4F25249CCA65002D89F2 /* camra_beauty@2x.png */; };
@@ -42,7 +48,13 @@
 		B8702F29251B099300FC1DF2 /* mqtt_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mqtt_io.swift; sourceTree = "<group>"; };
 		B8702F2B251B09A800FC1DF2 /* restful_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restful_io.swift; sourceTree = "<group>"; };
 		B8702F2D251B09B800FC1DF2 /* websocket_io.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = websocket_io.swift; sourceTree = "<group>"; };
-		B9134E77242B181100F6AF19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B8702F30251B738C00FC1DF2 /* JsonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonProvider.swift; sourceTree = "<group>"; };
+		B8726FDE2536F75000DC0E25 /* FinalImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalImageVC.swift; sourceTree = "<group>"; };
+		B8726FDF2536F75000DC0E25 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
+		B8726FE02536F75000DC0E25 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		B8726FE12536F75000DC0E25 /* CoreGraphicsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreGraphicsExtensions.swift; sourceTree = "<group>"; };
+		B8726FE22536F75000DC0E25 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
+		B8ED215D2533794700E926AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9134E79242C9D7000F6AF19 /* AppleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMaps.swift; sourceTree = "<group>"; };
 		BA92E3D3AE16339D9C5AE0BB /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
 		CD923A8669CA1248AFCB10EF /* Pods-Siri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.debug.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +112,7 @@
 		805027E91D389E5700CE3F1F /* Siri */ = {
 			isa = PBXGroup;
 			children = (
+				B8726FDD2536F75000DC0E25 /* Extensions+ViewControls */,
 				B8702F25251B07F800FC1DF2 /* CHT_IOT */,
 				FE5F4F24249CCA29002D89F2 /* images */,
 				FEACB80C248BA5AC006FAFA8 /* App */,
@@ -108,8 +121,8 @@
 				805027EE1D389E5700CE3F1F /* Main.storyboard */,
 				805027F11D389E5700CE3F1F /* Assets.xcassets */,
 				805027F31D389E5700CE3F1F /* LaunchScreen.storyboard */,
+				B8ED215D2533794700E926AA /* GoogleService-Info.plist */,
 				805027F61D389E5700CE3F1F /* Info.plist */,
-				B9134E77242B181100F6AF19 /* GoogleService-Info.plist */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
@@ -128,9 +141,23 @@
 				B8702F29251B099300FC1DF2 /* mqtt_io.swift */,
 				B8702F2B251B09A800FC1DF2 /* restful_io.swift */,
 				B8702F2D251B09B800FC1DF2 /* websocket_io.swift */,
+				B8702F30251B738C00FC1DF2 /* JsonProvider.swift */,
 			);
 			name = CHT_IOT;
 			sourceTree = "<group>";
+		};
+		B8726FDD2536F75000DC0E25 /* Extensions+ViewControls */ = {
+			isa = PBXGroup;
+			children = (
+				B8726FDE2536F75000DC0E25 /* FinalImageVC.swift */,
+				B8726FDF2536F75000DC0E25 /* FaceDetectionViewController.swift */,
+				B8726FE02536F75000DC0E25 /* UIViewExtension.swift */,
+				B8726FE12536F75000DC0E25 /* CoreGraphicsExtensions.swift */,
+				B8726FE22536F75000DC0E25 /* FaceView.swift */,
+			);
+			name = "Extensions+ViewControls";
+			path = "LiveFaceDetection-master/LiveFaceDetect/Extensions+ViewControls";
+			sourceTree = SOURCE_ROOT;
 		};
 		FE5F4F24249CCA29002D89F2 /* images */ = {
 			isa = PBXGroup;
@@ -185,7 +212,6 @@
 				805027E41D389E5700CE3F1F /* Frameworks */,
 				805027E51D389E5700CE3F1F /* Resources */,
 				D485571D8F417AA68CA7B33E /* [CP] Embed Pods Frameworks */,
-				01E2FB7AB196D9CC1209566C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,8 +266,8 @@
 				FE5F4F2F249CCA66002D89F2 /* close_preview@2x.png in Resources */,
 				FE5F4F33249CCA66002D89F2 /* camra_beauty_close@3x.png in Resources */,
 				FE5F4F2D249CCA66002D89F2 /* camra_beauty@2x.png in Resources */,
-				B9134E78242B181100F6AF19 /* GoogleService-Info.plist in Resources */,
 				FE5F4F32249CCA66002D89F2 /* camra_beauty@3x.png in Resources */,
+				B8ED215E2533794800E926AA /* GoogleService-Info.plist in Resources */,
 				FE5F4F2E249CCA66002D89F2 /* close_preview@3x.png in Resources */,
 				805027F21D389E5700CE3F1F /* Assets.xcassets in Resources */,
 				FE5F4F31249CCA66002D89F2 /* camra_beauty_close@2x.png in Resources */,
@@ -254,23 +280,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01E2FB7AB196D9CC1209566C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Siri/Pods-Siri-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B74D8CE3222579523322E0B2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,13 +327,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				805027ED1D389E5700CE3F1F /* SpeechTest.swift in Sources */,
+				B8726FE32536F75000DC0E25 /* FinalImageVC.swift in Sources */,
 				B9134E7A242C9D7000F6AF19 /* AppleMaps.swift in Sources */,
 				FE5F4F23249CC698002D89F2 /* RtmpController.swift in Sources */,
 				B8702F2E251B09B800FC1DF2 /* websocket_io.swift in Sources */,
 				B8702F2C251B09A800FC1DF2 /* restful_io.swift in Sources */,
+				B8702F31251B738C00FC1DF2 /* JsonProvider.swift in Sources */,
 				B8702F2A251B099300FC1DF2 /* mqtt_io.swift in Sources */,
+				B8726FE52536F75000DC0E25 /* UIViewExtension.swift in Sources */,
 				805027EB1D389E5700CE3F1F /* AppDelegate.swift in Sources */,
+				B8726FE62536F75000DC0E25 /* CoreGraphicsExtensions.swift in Sources */,
 				B852709A2517E9B400A37FC7 /* MonitorController.swift in Sources */,
+				B8726FE42536F75000DC0E25 /* FaceDetectionViewController.swift in Sources */,
+				B8726FE72536F75000DC0E25 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

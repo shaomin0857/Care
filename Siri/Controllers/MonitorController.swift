@@ -46,7 +46,15 @@ class MonitorController: UIViewController, MKMapViewDelegate{
             sensor: "location")
         socket = websocketio.websocketInit()
         socket.onText = { text in
-            print("onText ",text)
+            self.targetAnno.subtitle = text
+            let messageData = text.data(using: .utf8)
+            let result = try? JSONDecoder().decode(Location.self, from: messageData!)
+            if let locationStr=result?.value[0]{
+                let location = locationStr.split(separator: ",")
+                let lat = Double(location[0])
+                let lon = Double(location[1])
+                self.updateAnnoLocation(lati: lat!, long: lon!)
+            }
         }
     }
     // MARK: - Map init
@@ -55,7 +63,7 @@ class MonitorController: UIViewController, MKMapViewDelegate{
 
         // 建立一個 MKMapView
         myMapView = MKMapView(frame: CGRect(
-          x: 0, y: 20,
+          x: 0, y: 0,
           width: fullSize.width,
           height: fullSize.height - 20))
 
@@ -70,7 +78,8 @@ class MonitorController: UIViewController, MKMapViewDelegate{
 
         // 允許縮放地圖
         myMapView.isZoomEnabled = true
-
+        
+        myMapView.showsTraffic = true
         // 地圖預設顯示的範圍大小 (數字越小越精確)
         let latDelta = 0.05
         let longDelta = 0.05

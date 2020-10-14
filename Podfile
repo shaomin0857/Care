@@ -8,13 +8,11 @@ target 'Siri' do
   use_frameworks!
   
   # Pods for Siri
-  pod 'Firebase/Firestore'  
-  pod 'GoogleMaps'
-  pod 'GooglePlaces'
-  pod 'Geofirestore'
+  pod 'Firebase/Firestore'
+  
+  
   pod 'LFLiveKit'
   pod 'Socket.IO-Client-Swift'
   pod 'JJFloatingActionButton'
   pod 'SwiftMQTT'
-  pod 'SwiftWebSocket'
 end 
